@@ -1,257 +1,258 @@
-/* Define o tamanho dos elementos incluindo padding e borda. */
 * {
     box-sizing: border-box;
 }
 
-
-/* Configura a página inteira. */
 html,
 body {
     margin: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-
     font-family: Arial, Helvetica, sans-serif;
 }
 
 
-/* Container principal da realidade aumentada. */
-.ar-container {
-    position: absolute;
+/* Cena de realidade aumentada */
 
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-}
-
-
-/* Cena de realidade aumentada. */
 a-scene {
     position: absolute !important;
-
-    top: 0 !important;
-    left: 0 !important;
-
-    width: 100% !important;
-    height: 100% !important;
+    inset: 0;
+    width: 100%;
+    height: 100%;
 }
 
 
-/* Esconde o botão VR do A-Frame. */
-.a-enter-vr {
-    display: none !important;
-}
+/* Informações na parte superior */
 
-
-/* HUD superior. */
 #hud {
     position: fixed;
-
     top: 0;
     left: 0;
+    right: 0;
 
-    width: 100%;
+    z-index: 30;
 
-    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 
-    z-index: 10;
+    padding: 12px 14px;
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        180deg,
+        rgba(3, 18, 33, 0.88),
+        rgba(3, 18, 33, 0.25)
+    );
 
     pointer-events: none;
-
-    color: #fff;
-
-    text-align: center;
 }
 
 
-/* Área dos textos do HUD. */
 .hud-text {
-    font-size: 16px;
-
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 
-/* Título do HUD. */
 .hud-text strong {
-    display: block;
-
-    font-size: 20px;
-
-    margin-bottom: 8px;
-}
-
-
-/* Mensagem de status. */
-#status {
-    display: block;
-
     font-size: 14px;
-
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 
-/* Indicador do estado do tracking. */
-#badge {
-    display: inline-block;
-
-    margin-top: 8px;
-
-    padding: 6px 12px;
-
-    border-radius: 20px;
-
-    background: rgba(0, 0, 0, 0.65);
-
+#status {
     font-size: 12px;
 }
 
 
-/* Camada dos hotspots. */
+#badge {
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(21, 101, 192, 0.9);
+
+    font-size: 11px;
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* Camada dos pontos interativos */
+
 #hotspot-layer {
     position: fixed;
-
     inset: 0;
 
-    z-index: 20;
+    z-index: 40;
 
     pointer-events: none;
 }
 
 
-/* Hotspots. */
+/* Botões numerados */
+
 .hotspot {
     position: absolute;
+    display: none;
 
     width: 48px;
     height: 48px;
 
-    border: 3px solid #fff;
+    transform: translate(-50%, -50%);
 
+    border: 3px solid #ffffff;
     border-radius: 50%;
 
     background: #1976d2;
-
-    color: #fff;
+    color: #ffffff;
 
     font-size: 18px;
     font-weight: bold;
 
-    cursor: pointer;
-
-    transform: translate(-50%, -50%);
-
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 
     pointer-events: auto;
 
-    visibility: hidden;
+    cursor: pointer;
 }
 
 
-/* Hotspot visível. */
+/* Mostrar os pontos após reconhecer a imagem */
+
 .hotspot.visible {
-    visibility: visible;
+    display: block;
 }
 
 
-/* Hotspots de segurança. */
 .hotspot-danger {
     background: #d32f2f;
 }
 
 
-/* Efeito ao pressionar. */
 .hotspot:active {
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.90);
 }
 
 
-/* Esconde elementos. */
+/* Painel de informações */
+
 .hidden {
     display: none !important;
 }
 
 
-/* Painel de informações. */
 .info-panel {
     position: fixed;
 
     left: 50%;
-    bottom: 20px;
-
-    width: calc(100% - 40px);
-    max-width: 500px;
-
-    padding: 20px;
-
-    z-index: 30;
+    bottom: 24px;
 
     transform: translateX(-50%);
 
+    z-index: 60;
+
+    width: min(92vw, 520px);
+
+    padding: 18px 48px 18px 18px;
+
+    color: #eef7ff;
+
+    background: rgba(5, 20, 35, 0.96);
+
+    border: 1px solid rgba(125, 211, 252, 0.65);
+
     border-radius: 16px;
 
-    background: rgba(0, 0, 0, 0.88);
-
-    color: #fff;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 
-/* Título do painel. */
-.info-panel h2 {
-    margin-top: 0;
+.info-panel small {
+    color: #7dd3fc;
 
-    margin-bottom: 10px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+.info-panel h2 {
+    margin: 10px 0;
 
     font-size: 22px;
 }
 
 
-/* Texto do painel. */
 .info-panel p {
-    margin: 8px 0;
+    font-size: 15px;
 
     line-height: 1.5;
 }
 
 
-/* Botão fechar. */
+.info-panel .detail {
+    color: #c4d8e8;
+
+    font-size: 13px;
+}
+
+
+/* Botão de fechar */
+
 .close-button {
     position: absolute;
 
     top: 8px;
     right: 10px;
 
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
 
     border: none;
 
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.15);
+    background: #263d50;
 
-    color: #fff;
+    color: #ffffff;
 
-    font-size: 24px;
+    font-size: 25px;
 
     cursor: pointer;
 }
 
 
-/* Efeito ao pressionar fechar. */
 .close-button:active {
-    transform: scale(0.9);
+    background: #45647d;
+}
+
+
+/* Ajustes para telas pequenas */
+
+@media (max-width: 480px) {
+
+    .hud-text strong {
+        font-size: 12px;
+    }
+
+    #status {
+        font-size: 11px;
+    }
+
+    .hotspot {
+        width: 48px;
+        height: 48px;
+
+        font-size: 18px;
+    }
+
+    .info-panel h2 {
+        font-size: 19px;
+    }
+
 }
