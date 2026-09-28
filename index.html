@@ -11,14 +11,8 @@
 
     <title>RA | Manual Interativo do Torno CNC</title>
 
-    <!-- CSS DA INTERFACE -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!--
-    BIBLIOTECAS DA REALIDADE AUMENTADA
-    A-Frame: cena 3D
-    MindAR: reconhecimento e rastreamento do target
-    -->
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js">
@@ -27,174 +21,143 @@
 
 <body>
 
-    <!--
-    1. HUD SUPERIOR
-    Mostra o estado da aplicação.
-    -->
+    <div class="ar-container">
 
-    <header id="hud">
+        <!-- HUD SUPERIOR -->
+        <header id="hud">
 
-        <div class="hud-text">
+            <div class="hud-text">
 
-            <strong>
-                Manual Interativo - Torno CNC
-            </strong>
+                <strong>
+                    Manual Interativo - Torno CNC
+                </strong>
 
-            <span id="status">
-                Aponte a câmera para a imagem do torno.
-            </span>
+                <span id="status">
+                    Aponte a câmera para a imagem do torno.
+                </span>
+
+            </div>
+
+            <div id="badge">
+                PROCURANDO ALVO
+            </div>
+
+        </header>
+
+
+        <!-- HOTSPOTS -->
+        <div id="hotspot-layer">
+
+            <button
+                class="hotspot hotspot-danger"
+                data-topic="placa"
+                data-x="-0.45"
+                data-y="0.25"
+                data-z="0"
+            >
+                1
+            </button>
+
+            <button
+                class="hotspot"
+                data-topic="torre"
+                data-x="0.35"
+                data-y="0.25"
+                data-z="0"
+            >
+                2
+            </button>
+
+            <button
+                class="hotspot"
+                data-topic="comando"
+                data-x="0.45"
+                data-y="-0.25"
+                data-z="0"
+            >
+                3
+            </button>
+
+            <button
+                class="hotspot hotspot-danger"
+                data-topic="seguranca"
+                data-x="-0.35"
+                data-y="-0.25"
+                data-z="0"
+            >
+                4
+            </button>
 
         </div>
 
-        <div id="badge">
-            PROCURANDO ALVO
-        </div>
 
-    </header>
+        <!-- PAINEL DE INFORMAÇÕES -->
+        <section id="info-panel" class="info-panel hidden">
+
+            <button
+                id="close-panel"
+                class="close-button"
+                type="button"
+            >
+                ×
+            </button>
+
+            <h2 id="info-title"></h2>
+
+            <p id="info-text"></p>
+
+            <p id="info-detail"></p>
+
+        </section>
 
 
-    <!--
-    2. CAMADA DOS HOTSPOTS
-    Os botões começam escondidos e aparecem quando
-    o target é reconhecido.
-    -->
+        <!-- CENA DE REALIDADE AUMENTADA -->
+        <a-scene
+            id="ar-scene"
 
-    <div id="hotspot-layer">
+            mindar-image="
+                imageTargetSrc: assets/targets/torno-cnc.mind;
+                autoStart: true;
+                uiLoading: yes;
+                uiScanning: yes;
+                uiError: yes;
+            "
 
-        <button
-            class="hotspot hotspot-danger"
-            data-topic="placa"
-            data-x="-0.45"
-            data-y="0.25"
-            data-z="0"
+            color-space="sRGB"
+
+            renderer="
+                colorManagement: true;
+                physicallyCorrectLights: true;
+                alpha: true;
+            "
+
+            vr-mode-ui="enabled: false"
+
+            device-orientation-permission-ui="enabled: false"
+
+            embedded
         >
-            1
-        </button>
 
-        <button
-            class="hotspot"
-            data-topic="torre"
-            data-x="0.35"
-            data-y="0.25"
-            data-z="0"
-        >
-            2
-        </button>
+            <a-camera
+                id="ar-camera"
+                position="0 0 0"
+                look-controls="enabled: false"
+            >
+            </a-camera>
 
-        <button
-            class="hotspot"
-            data-topic="comando"
-            data-x="0.45"
-            data-y="-0.25"
-            data-z="0"
-        >
-            3
-        </button>
 
-        <button
-            class="hotspot hotspot-danger"
-            data-topic="seguranca"
-            data-x="-0.35"
-            data-y="-0.25"
-            data-z="0"
-        >
-            4
-        </button>
+            <a-entity
+                id="target"
+                mindar-image-target="targetIndex: 0"
+            >
+            </a-entity>
+
+        </a-scene>
 
     </div>
 
 
-    <!--
-    3. PAINEL DE INFORMAÇÕES
-    Mostra as informações quando o usuário toca
-    em um hotspot.
-    -->
-
-    <section id="info-panel" class="info-panel hidden">
-
-        <button
-            id="close-panel"
-            class="close-button"
-            type="button"
-        >
-            ×
-        </button>
-
-        <h2 id="info-title"></h2>
-
-        <p id="info-text"></p>
-
-        <p id="info-detail"></p>
-
-    </section>
-
-
-    <!--
-    4. CENA DE REALIDADE AUMENTADA
-
-    O arquivo torno-cnc.mind deve estar em:
-    assets/targets/torno-cnc.mind
-    -->
-
-    <a-scene
-        id="ar-scene"
-
-        mindar-image="
-            imageTargetSrc: assets/targets/torno-cnc.mind;
-            autoStart: true;
-            uiLoading: yes;
-            uiScanning: yes;
-            uiError: yes;
-        "
-
-        color-space="sRGB"
-
-        renderer="
-            colorManagement: true;
-            physicallyCorrectLights: true;
-            alpha: true;
-        "
-
-        vr-mode-ui="enabled: false"
-
-        device-orientation-permission-ui="enabled: false"
-
-        embedded
-    >
-
-        <!--
-        Câmera utilizada pelo MindAR/A-Frame.
-        -->
-
-        <a-camera
-            id="ar-camera"
-            position="0 0 0"
-            look-controls="enabled: false"
-        >
-        </a-camera>
-
-
-        <!--
-        Âncora do target.
-        O JavaScript usa essa entidade para calcular
-        a posição dos hotspots.
-        -->
-
-        <a-entity
-            id="target"
-            mindar-image-target="targetIndex: 0"
-        >
-        </a-entity>
-
-    </a-scene>
-
-
-    <!--
-    5. JAVASCRIPT DA APLICAÇÃO
-    Carregado por último para garantir que o HTML
-    já esteja carregado.
-    -->
-
+    <!-- JAVASCRIPT -->
     <script src="js/app.js"></script>
 
 </body>

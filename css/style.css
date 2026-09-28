@@ -16,19 +16,42 @@ body {
 }
 
 
-/* A cena de realidade aumentada ocupa a tela inteira. */
-a-scene {
-    position: fixed;
-    inset: 0;
+/* Container principal da realidade aumentada. */
+.ar-container {
+    position: absolute;
+
+    top: 0;
+    left: 0;
 
     width: 100%;
     height: 100%;
+
+    overflow: hidden;
+}
+
+
+/* Cena de realidade aumentada. */
+a-scene {
+    position: absolute !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+/* Esconde o botão VR do A-Frame. */
+.a-enter-vr {
+    display: none !important;
 }
 
 
 /* HUD superior. */
 #hud {
     position: fixed;
+
     top: 0;
     left: 0;
 
@@ -92,10 +115,7 @@ a-scene {
 }
 
 
-/*
- * Camada responsável pelos hotspots.
- * Ela fica sobre a câmera.
- */
+/* Camada dos hotspots. */
 #hotspot-layer {
     position: fixed;
 
@@ -107,10 +127,7 @@ a-scene {
 }
 
 
-/*
- * Os hotspots começam escondidos.
- * Eles só aparecem quando o target é encontrado.
- */
+/* Hotspots. */
 .hotspot {
     position: absolute;
 
@@ -141,37 +158,31 @@ a-scene {
 }
 
 
-/*
- * Quando o hotspot recebe a classe visible,
- * ele pode aparecer na tela.
- */
+/* Hotspot visível. */
 .hotspot.visible {
     visibility: visible;
 }
 
 
-/* Hotspots relacionados a avisos de segurança. */
+/* Hotspots de segurança. */
 .hotspot-danger {
     background: #d32f2f;
 }
 
 
-/* Efeito visual ao pressionar o botão. */
+/* Efeito ao pressionar. */
 .hotspot:active {
     transform: translate(-50%, -50%) scale(0.9);
 }
 
 
-/* Classe utilizada para esconder elementos. */
+/* Esconde elementos. */
 .hidden {
     display: none !important;
 }
 
 
-/*
- * Painel que apresenta as informações
- * relacionadas ao hotspot selecionado.
- */
+/* Painel de informações. */
 .info-panel {
     position: fixed;
 
@@ -208,7 +219,7 @@ a-scene {
 }
 
 
-/* Texto principal do painel. */
+/* Texto do painel. */
 .info-panel p {
     margin: 8px 0;
 
@@ -216,7 +227,7 @@ a-scene {
 }
 
 
-/* Botão utilizado para fechar o painel. */
+/* Botão fechar. */
 .close-button {
     position: absolute;
 
@@ -240,25 +251,7 @@ a-scene {
 }
 
 
-/* Efeito visual ao pressionar o botão de fechar. */
+/* Efeito ao pressionar fechar. */
 .close-button:active {
     transform: scale(0.9);
-}
-/* Ajuste da câmera do MindAR */
-video {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    object-fit: cover !important;
-}
-
-/* Ajuste do canvas do A-Frame */
-.a-canvas {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
 }
