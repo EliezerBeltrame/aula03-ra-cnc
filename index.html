@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>RA | Manual Interativo do Torno CNC</title>
+
+    <!-- CSS da interface. -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- A-Frame: cena e objetos 3D. -->
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+
+    <!-- MindAR: reconhecimento e tracking do target. -->
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+</head>
+
+<body>
+
+    <!-- HUD: informações que aparecem na tela. -->
+    <header id="hud">
+
+        <div class="hud-title">
+            Manual Interativo - Torno CNC
+        </div>
+
+        <div id="tracking-status" class="tracking-status">
+            Aponte a câmera para o marcador
+        </div>
+
+        <div id="tracking-badge" class="tracking-badge">
+            Procurando...
+        </div>
+
+    </header>
+
+
+    <!-- Camada dos pontos interativos. -->
+    <div id="hotspot-layer">
+
+        <button
+            class="hotspot hotspot-danger"
+            data-topic="placa"
+            data-x="-0.45"
+            data-y="0.25"
+            data-z="0">
+            1
+        </button>
+
+        <button
+            class="hotspot"
+            data-topic="torre"
+            data-x="0.35"
+            data-y="0.25"
+            data-z="0">
+            2
+        </button>
+
+        <button
+            class="hotspot"
+            data-topic="comando"
+            data-x="0.45"
+            data-y="-0.25"
+            data-z="0">
+            3
+        </button>
+
+        <button
+            class="hotspot hotspot-danger"
+            data-topic="seguranca"
+            data-x="-0.35"
+            data-y="-0.25"
+            data-z="0">
+            4
+        </button>
+
+    </div>
+
+
+    <!-- Painel que mostra as informações dos pontos. -->
+    <section id="info-panel" class="info-panel hidden">
+
+        <button
+            id="close-panel"
+            class="close-button"
+            type="button">
+            ×
+        </button>
+
+        <h2 id="panel-title"></h2>
+
+        <p id="panel-text"></p>
+
+        <p id="panel-detail"></p>
+
+    </section>
+
+
+    <!-- Cena principal da Realidade Aumentada. -->
+    <a-scene
+        id="ar-scene"
+        mindar-image="
+            imageTargetSrc: assets/targets/torno-cnc.mind;
+            autoStart: true;
+            uiLoading: yes;
+            uiScanning: yes;
+            uiError: yes;
+        "
+        color-space="sRGB"
+        renderer="
+            colorManagement: true;
+            physicallyCorrectLights: true;
+            alpha: true;
+        "
+        vr-mode-ui="enabled: false"
+        device-orientation-permission-ui="enabled: false"
+        embedded>
+
+        <!-- Câmera utilizada pelo MindAR. -->
+        <a-camera
+            id="ar-camera"
+            position="0 0 0"
+            look-controls="enabled: false">
+        </a-camera>
+
+        <!-- Target que será reconhecido pelo MindAR. -->
+        <a-entity
+            id="target"
+            mindar-image-target="targetIndex: 0">
+        </a-entity>
+
+    </a-scene>
+
+
+    <!-- JavaScript carregado ao final do body. -->
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

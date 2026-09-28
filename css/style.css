@@ -1,0 +1,239 @@
+/* Define o tamanho dos elementos incluindo padding e borda. */
+* {
+    box-sizing: border-box;
+}
+
+
+/* Configura a página inteira. */
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #000;
+}
+
+
+/* A cena de realidade aumentada ocupa a tela inteira. */
+a-scene {
+    position: fixed;
+    inset: 0;
+}
+
+
+/*
+ * Não use um background opaco no HUD.
+ * A câmera precisa continuar visível.
+ */
+#hud {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 16px;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    color: #fff;
+
+    text-align: center;
+}
+
+
+/* Título principal do HUD. */
+.hud-title {
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+
+/* Mensagem sobre o estado do tracking. */
+.tracking-status {
+    font-size: 14px;
+
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+
+/* Pequeno indicador do estado do tracking. */
+.tracking-badge {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    font-size: 12px;
+}
+
+
+/*
+ * Camada responsável pelos hotspots.
+ * Ela fica sobre a câmera.
+ */
+#hotspot-layer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+
+/*
+ * Os hotspots começam escondidos.
+ * Eles só aparecem quando o target é encontrado.
+ */
+.hotspot {
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    border: 3px solid #fff;
+
+    border-radius: 50%;
+
+    background: #1976d2;
+
+    color: #fff;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transform: translate(-50%, -50%);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.5);
+
+    pointer-events: auto;
+
+    visibility: hidden;
+}
+
+
+/*
+ * Quando o hotspot recebe a classe visible,
+ * ele pode aparecer na tela.
+ */
+.hotspot.visible {
+    visibility: visible;
+}
+
+
+/* Hotspots relacionados a avisos de segurança. */
+.hotspot-danger {
+    background: #d32f2f;
+}
+
+
+/* Efeito visual ao pressionar o botão. */
+.hotspot:active {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+
+/* Classe utilizada para esconder elementos. */
+.hidden {
+    display: none !important;
+}
+
+
+/*
+ * Painel que apresenta as informações
+ * relacionadas ao hotspot selecionado.
+ */
+.info-panel {
+    position: fixed;
+
+    left: 50%;
+    bottom: 20px;
+
+    width: calc(100% - 40px);
+    max-width: 500px;
+
+    padding: 20px;
+
+    z-index: 30;
+
+    transform: translateX(-50%);
+
+    border-radius: 16px;
+
+    background: rgba(0, 0, 0, 0.88);
+
+    color: #fff;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Título do painel. */
+.info-panel h2 {
+    margin-top: 0;
+
+    margin-bottom: 10px;
+
+    font-size: 22px;
+}
+
+
+/* Texto principal do painel. */
+.info-panel p {
+    margin: 8px 0;
+
+    line-height: 1.5;
+}
+
+
+/* Botão utilizado para fechar o painel. */
+.close-button {
+    position: absolute;
+
+    top: 8px;
+    right: 10px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: #fff;
+
+    font-size: 24px;
+
+    cursor: pointer;
+}
+
+
+/* Efeito visual ao pressionar o botão de fechar. */
+.close-button:active {
+    transform: scale(0.9);
+}
