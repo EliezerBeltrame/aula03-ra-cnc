@@ -25,12 +25,12 @@ document.addEventListener(
 
         // Referência para o texto de status.
         const trackingStatus =
-            document.querySelector("#tracking-status");
+            document.querySelector("#status");
 
 
         // Referência para o indicador de tracking.
         const trackingBadge =
-            document.querySelector("#tracking-badge");
+            document.querySelector("#badge");
 
 
         // Referência para o painel de informações.
@@ -40,17 +40,17 @@ document.addEventListener(
 
         // Referência para o título do painel.
         const panelTitle =
-            document.querySelector("#panel-title");
+            document.querySelector("#info-title");
 
 
         // Referência para o texto principal.
         const panelText =
-            document.querySelector("#panel-text");
+            document.querySelector("#info-text");
 
 
         // Referência para o texto detalhado.
         const panelDetail =
-            document.querySelector("#panel-detail");
+            document.querySelector("#info-detail");
 
 
         // Referência para o botão de fechar.
