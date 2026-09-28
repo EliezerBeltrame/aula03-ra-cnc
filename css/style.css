@@ -244,3 +244,21 @@ a-scene {
 .close-button:active {
     transform: scale(0.9);
 }
+/* Ajuste da câmera do MindAR */
+video {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    object-fit: cover !important;
+}
+
+/* Ajuste do canvas do A-Frame */
+.a-canvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+}
