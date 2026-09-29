@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <title>RA | Manual Interativo do Torno CNC</title>
 
@@ -41,63 +38,31 @@
 
     <div id="hotspot-layer">
 
-        <button
-            class="hotspot"
-            type="button"
-            data-topic="placa"
-            data-x="-0.34"
-            data-y="0.02"
-            data-z="0.03"
+        <button class="hotspot" type="button" data-topic="placa" data-x="-0.34" data-y="0.02" data-z="0.03"
             aria-label="Cabeçote e placa">
             1
         </button>
 
-        <button
-            class="hotspot"
-            type="button"
-            data-topic="torre"
-            data-x="0.07"
-            data-y="0.03"
-            data-z="0.03"
+        <button class="hotspot" type="button" data-topic="torre" data-x="0.07" data-y="0.03" data-z="0.03"
             aria-label="Torre de ferramentas">
             2
         </button>
 
-        <button
-            class="hotspot"
-            type="button"
-            data-topic="comando"
-            data-x="0.36"
-            data-y="0.15"
-            data-z="0.03"
+        <button class="hotspot" type="button" data-topic="comando" data-x="0.36" data-y="0.15" data-z="0.03"
             aria-label="Painel de comando CNC">
             3
         </button>
-
-        <button
-            class="hotspot hotspot-danger"
-            type="button"
-            data-topic="seguranca"
-            data-x="0.35"
-            data-y="-0.16"
-            data-z="0.03"
-            aria-label="Proteção e segurança">
-            4
+        <button class="hotspot" type="button" data-topic="motor" data-x="-0.10" data-y="-0.18" data-z="0.03"
+            aria-label="Motor e acionamento">
+            5
         </button>
 
     </div>
 
 
-    <section
-        id="info-panel"
-        class="info-panel hidden"
-        aria-live="polite">
+    <section id="info-panel" class="info-panel hidden" aria-live="polite">
 
-        <button
-            id="close-panel"
-            class="close-button"
-            type="button"
-            aria-label="Fechar painel">
+        <button id="close-panel" class="close-button" type="button" aria-label="Fechar painel">
             ×
         </button>
 
@@ -118,34 +83,22 @@
     </section>
 
 
-    <a-scene
-        id="ar-scene"
-        mindar-image="
+    <a-scene id="ar-scene" mindar-image="
             imageTargetSrc: assets/targets/torno-cnc.mind;
             autoStart: true;
             uiLoading: yes;
             uiScanning: yes;
             uiError: yes;
-        "
-        color-space="sRGB"
-        renderer="
+        " color-space="sRGB" renderer="
             colorManagement: true;
             physicallyCorrectLights: true;
             alpha: true;
-        "
-        vr-mode-ui="enabled: false"
-        device-orientation-permission-ui="enabled: false"
-        embedded>
+        " vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" embedded>
 
-        <a-camera
-            id="ar-camera"
-            position="0 0 0"
-            look-controls="enabled: false">
+        <a-camera id="ar-camera" position="0 0 0" look-controls="enabled: false">
         </a-camera>
 
-        <a-entity
-            id="target"
-            mindar-image-target="targetIndex: 0">
+        <a-entity id="target" mindar-image-target="targetIndex: 0">
         </a-entity>
 
     </a-scene>

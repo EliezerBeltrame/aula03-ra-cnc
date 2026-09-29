@@ -53,6 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Proteção e segurança",
             text: "Portas, proteções e intertravamentos ajudam a separar o operador da região de usinagem.",
             detail: "A realidade aumentada não substitui o treinamento nem a documentação do fabricante."
+        },
+        motor: {
+            title: "Motor e acionamento",
+            text: "O motor fornece a energia necessária para o funcionamento e o movimento do torno CNC.",
+            detail: "O acionamento deve ser utilizado conforme as orientações de segurança da máquina."
         }
 
     };
